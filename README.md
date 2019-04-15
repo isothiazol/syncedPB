@@ -38,7 +38,9 @@ In case you are working on a Jupyter notebook on a remote server, a quick spread
 
 ```
 wget https://github.com/javirrs/syncedPB/releases/download/v-VersionNumber/syncedPB-version_name.whl
+
 pip install syncedPB-version_name.whl
+
 rm syncedPB-version_name.whl
 ```
 
