@@ -20,7 +20,8 @@ for i in syncedPB(range(100), popup=True):
 
 ## How to get it
 
-The wheel file can be found in the release section of the repo.
+The latest wheel file can be found in the (release section)[https://github.com/javirrs/syncedPB/releases] of the repo, or (here)[https://github.com/javirrs/syncedPB/releases/download/v0.0.1/syncedPB-0.0.1-py3-none-any.whl]
+
 Once downloaded you can install it by:
 
 ```
@@ -29,4 +30,4 @@ pip install *.whl
 
 ## Last words
 
-Please report any bug (or any cool idea to implement) by opening an issue. Pull requests and collaborators are welcome.
+Please report any bug (or any cool idea to implement) by opening an (issue)[https://github.com/javirrs/syncedPB/issues]. (Pull requestai)[https://github.com/javirrs/syncedPB/pulls] and collaborators are welcome.
