@@ -36,6 +36,8 @@ pip install syncedPB-version_name.whl
 rm syncedPB-version_name.whl
 ```
 
+If you want to update to a new version, just follow the steps above and your package version will update to the latest one (or the newest one being installed).
+
 ## Last words
 
 Please report any bug (or any cool idea to implement) by opening an [issue](https://github.com/javirrs/syncedPB/issues). [Pull requestai](https://github.com/javirrs/syncedPB/pulls) and collaborators are welcome.
