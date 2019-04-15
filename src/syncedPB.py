@@ -3,7 +3,7 @@ import sys
 import os
 from IPython.display import display, Javascript
 
-def _genStr(it, total, eta, length_bar = 20):
+def _genStr(it, total, eta, time_it, length_bar=20):
     outstr = str(it)+'/'+str(total)+'  ['
     perc_it = it/total * length_bar
 
@@ -18,15 +18,17 @@ def _genStr(it, total, eta, length_bar = 20):
     sec_eta = round(eta - 60 * min_eta)
 
     if min_eta > 0:
-        outstr = outstr + str(min_eta)+' min \t'+str(sec_eta)+' sec'
+        outstr = outstr+'\t ETA: '+str(min_eta)+' min \t'+str(sec_eta)+' sec'
     else:
-        outstr = outstr + str(sec_eta)+' sec'
+        outstr = outstr+'\t ETA: '+str(sec_eta)+' sec'
+        
+    outstr = outstr+'\t ('+str(round(time_it,6))+' secs/it)'
         
     outstr = outstr.ljust(100)
 
     return outstr
     
-def _ema(x, mu, alpha=0.3):
+def _ema(x, mu, alpha=0.8):
     return (alpha * x) + (1 - alpha) * mu
 
 def foo():
@@ -37,7 +39,7 @@ def foo():
         ["base/js/dialog"], 
         function(dialog) {
             dialog.modal({
-                title: 'Code completed !',
+                title: 'Completed !',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pretium nulla at nisl hendrerit, sit amet facilisis erat ultrices. Integer ac mauris eget sem egestas tempus sit amet a neque. In nec gravida arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque non velit eu lectus feugiat gravida. Duis vitae dui non quam bibendum bibendum eget eu orci. Sed eget dui sed sapien mattis tempus id in nisl. Duis sagittis lectus ante. Praesent id imperdiet ipsum. Ut nec fermentum ante. Donec nec tortor lorem. Quisque condimentum sapien eget lacus varius, id mattis mauris molestie. Curabitur pharetra feugiat sem, eget faucibus tortor rutrum nec.',
             });
         }
@@ -61,14 +63,14 @@ class syncedPB():
 
     def __getitem__(self, i):
         
-        if self.it > 0:
+        if self.it > 0.1*len(self):
             self.time_it = _ema(timmer() - self.tick, self.time_it)
         else:
             self.time_it = _ema(timmer() - self.tick, self.time_it, alpha=1)
             
         eta = int((len(self) - self.it)*self.time_it)
         
-        print(_genStr(self.it, len(self), eta), file=self.__file, end='\r')
+        print(_genStr(self.it, len(self), eta, self.time_it), file=self.__file, end='\r')
         self.tick = timmer()
         self.it += 1
         
