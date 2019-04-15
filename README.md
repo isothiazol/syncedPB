@@ -1,5 +1,5 @@
 # syncedPB
-Synced progress bar for Python and iPython environments.
+Synced progress bar for Python and Jupyter notebooks.
 
 
 ## Examples
