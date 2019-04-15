@@ -4,6 +4,12 @@ Synced progress bar for Python and Jupyter notebooks.
 
 ## Examples
 
+To import into your program:
+
+```python
+from syncedPB import syncedPB
+```
+
 Progress bar on a loop:
 
 ```python
