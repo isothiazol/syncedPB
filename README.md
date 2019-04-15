@@ -20,7 +20,7 @@ for i in syncedPB(range(100), popup=True):
 
 ## How to get it
 
-The latest wheel file can be found in the [release section](https://github.com/javirrs/syncedPB/releases) of the repo, or [here](https://github.com/javirrs/syncedPB/releases/download/v0.0.1/syncedPB-0.0.1-py3-none-any.whl).
+The latest wheel file can be found in the [release section](https://github.com/javirrs/syncedPB/releases) of the repo, or [here](https://github.com/javirrs/syncedPB/releases/download/v0.0.2/syncedPB-0.0.2-py3-none-any.whl).
 
 Once downloaded you can install it by:
 
@@ -31,7 +31,7 @@ pip install *.whl
 In case you are working on a Jupyter notebook on a remote server, a quick spreadsheet to install it from unix terminal:
 
 ```
-wget https://github.com/javirrs/syncedPB/releases/download/v0.0.1/syncedPB-version_name.whl
+wget https://github.com/javirrs/syncedPB/releases/download/v-VersionNumber/syncedPB-version_name.whl
 pip install syncedPB-version_name.whl
 rm syncedPB-version_name.whl
 ```
