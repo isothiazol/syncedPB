@@ -26,6 +26,17 @@ for i in syncedPB(range(100), popup=True):
 
 ## How to get it
 
+### Easy way
+
+If all goes as planned, the latest version should be uploaded into the [Pypi](https://pypi.org/manage/project/syncedpb) repository. Therefore, the typicall rules for pip apply:
+
+* Installing: ``` pip install syncedPB.whl ```
+
+* Updating: ``` pip install -U syncedPB.whl ```
+
+
+### Other ways
+
 The latest wheel file can be found in the [release section](https://github.com/javirrs/syncedPB/releases) of the repo, or [here](https://github.com/javirrs/syncedPB/releases/download/v0.0.2/syncedPB-0.0.2-py3-none-any.whl).
 
 Once downloaded you can install it by:
