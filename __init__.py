@@ -18,12 +18,13 @@ def _genStr(it, total, eta, time_it, length_bar=20):
     sec_eta = round(eta - 60 * min_eta)
 
     if min_eta > 0:
-        outstr = outstr+'\t ETA: '+str(min_eta)+' min \t'+str(sec_eta)+' sec'
+        outstr = outstr+'\t eta: '+str(min_eta)+' min \t'+str(sec_eta)+' sec'
     else:
-        outstr = outstr+'\t ETA: '+str(sec_eta)+' sec'
+        outstr = outstr+'\t eta: '+str(sec_eta)+' sec'
         
     outstr = outstr+'\t ('+str(round(time_it,6))+' secs/it)'
-        
+
+
     outstr = outstr.ljust(100)
 
     return outstr
@@ -57,6 +58,7 @@ class syncedPB():
         self.tick = timmer()
         self.it = 0
         self.time_it = 0
+        self.elapsed = timmer()
     
     def __len__(self):
         return len(self.__target)
