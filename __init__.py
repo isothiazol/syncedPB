@@ -3,7 +3,7 @@ import sys
 import os
 from IPython.display import display, Javascript
 
-def _genStr(it, total, eta, time_it, length_bar=20):
+def _genStr(it, total, eta, time_it, beginning_time, length_bar=20):
     outstr = str(it)+'/'+str(total)+'  ['
     perc_it = it/total * length_bar
 
@@ -17,15 +17,25 @@ def _genStr(it, total, eta, time_it, length_bar=20):
     min_eta = round(eta//60)
     sec_eta = round(eta - 60 * min_eta)
 
-    if min_eta > 0:
-        outstr = outstr+'\t eta: '+str(min_eta)+' min \t'+str(sec_eta)+' sec'
+    if min_eta > 1:
+        outstr = outstr+'\t eta: '+str(min_eta)+' mins  and  '+str(sec_eta)+' secs'
+    elif min_eta == 1:
+        outstr = outstr+'\t eta: '+str(min_eta)+' min  and  '+str(sec_eta)+' secs'
     else:
-        outstr = outstr+'\t eta: '+str(sec_eta)+' sec'
+        outstr = outstr+'\t eta: '+str(sec_eta)+' secs'
         
     outstr = outstr+'\t ('+str(round(time_it,6))+' secs/it)'
-
-
-    outstr = outstr.ljust(100)
+    
+    elapsed = round(timmer() - beginning_time)
+    min_elap = round(elapsed//60)
+    sec_elap = round(elapsed - 60 * min_elap)
+    
+    if min_eta > 1:
+        outstr = outstr+'\t elapsed: '+str(min_elap)+' mins  and  '+str(sec_elap)+' secs'
+    elif min_eta == 1:
+        outstr = outstr+'\t elapsed: '+str(min_elap)+' min  and  '+str(sec_elap)+' secs'
+    else:
+        outstr = outstr+'\t elapsed: '+str(sec_elap)+' secs'
 
     return outstr
     
@@ -55,26 +65,27 @@ class syncedPB():
         self.__popup = popup
         self.__file = file
         self.__target = target
-        self.tick = timmer()
-        self.it = 0
-        self.time_it = 0
-        self.elapsed = timmer()
+        self.__tick = timmer()
+        self.__it = 0
+        self.__time_it = 0
+        self.__beginning_of_time = timmer()
+        self.__alpha_init = 1.0 
+        self.__update_iters = max( 1, int(0.05*len(self)) )
     
     def __len__(self):
         return len(self.__target)
 
     def __getitem__(self, i):
         
-        if self.it > 0.1*len(self):
-            self.time_it = _ema(timmer() - self.tick, self.time_it)
-        else:
-            self.time_it = _ema(timmer() - self.tick, self.time_it, alpha=1)
-            
-        eta = int((len(self) - self.it)*self.time_it)
+        self.__time_it = _ema(timmer() - self.__tick, self.__time_it, max(0.3, self.__alpha_init/(1+0.1*self.__it)  ))
         
-        print(_genStr(self.it, len(self), eta, self.time_it), file=self.__file, end='\r')
-        self.tick = timmer()
-        self.it += 1
+        eta = int((len(self) - self.__it)*self.__time_it)
+        
+        if self.__it % self.__update_iters == 0:
+            print(_genStr(self.__it, len(self), eta, self.__time_it, self.__beginning_of_time), file=self.__file, end='\r')
+        
+        self.__tick = timmer()
+        self.__it += 1
         
         if i == len(self)-1 and self.__popup:
             foo()
