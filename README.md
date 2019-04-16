@@ -28,7 +28,7 @@ for i in syncedPB(range(100), popup=True):
 
 ### Easy way
 
-If all goes as planned, the latest version should be uploaded into the [Pypi](https://pypi.org/manage/project/syncedpb) repository. Therefore, the typicall rules for pip apply:
+If all goes as planned, the latest version should be uploaded into the [Pypi](https://pypi.org/project/syncedPB/) repository. Therefore, the typicall rules for pip apply:
 
 * Installing: ``` pip install syncedPB.whl ```
 
