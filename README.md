@@ -59,4 +59,4 @@ If you want to update to a new version, just follow the steps above and your pac
 
 ## Last words
 
-Please report any bug (or any cool idea to implement) by opening an [issue](https://github.com/javirrs/syncedPB/issues). [Pull requestai](https://github.com/javirrs/syncedPB/pulls) and collaborators are welcome.
+Please report any bug (or any cool idea to implement) by opening an [issue](https://github.com/javirrs/syncedPB/issues). Also, [pull requestai](https://github.com/javirrs/syncedPB/pulls) and collaborators are welcome.
