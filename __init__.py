@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from time import time as timmer
 import sys
 import os
